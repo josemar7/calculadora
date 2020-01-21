@@ -4,6 +4,7 @@ public enum Operacion {
 
     SUMA("+"),
     RESTA("-");
+    // TODO: 21/01/2020 Aniadir mas operaciones 
 
     private String oper;
 
