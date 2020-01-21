@@ -8,6 +8,7 @@ public interface CalculadoraService {
      * operacion suma
      * @param op1, operando 1
      * @param op2, operando 2
+     * @return BigDecimal
      */
     BigDecimal suma(final BigDecimal op1, final BigDecimal op2);
 
@@ -15,6 +16,7 @@ public interface CalculadoraService {
      * operacion resta
      * @param op1, operando1
      * @param op2, operando2
+     * @return BigDecimal
      */
     BigDecimal resta(BigDecimal op1, BigDecimal op2);
 }

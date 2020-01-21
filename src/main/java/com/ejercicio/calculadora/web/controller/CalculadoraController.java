@@ -1,5 +1,6 @@
 package com.ejercicio.calculadora.web.controller;
 
+import com.ejercicio.calculadora.constant.Constantes;
 import com.ejercicio.calculadora.service.CalculadoraService;
 import com.ejercicio.calculadora.utils.Operacion;
 import com.ejercicio.calculadora.utils.StringUtils;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 
-@RequestMapping("/api/v1/calculadora")
+@RequestMapping(Constantes.API_V_1_CALCULADORA)
 @RestController
 @Validated
 public class CalculadoraController {

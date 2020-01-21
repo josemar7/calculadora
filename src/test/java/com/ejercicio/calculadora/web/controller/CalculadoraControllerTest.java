@@ -1,8 +1,10 @@
 package com.ejercicio.calculadora.web.controller;
 
+import com.ejercicio.calculadora.constant.Constantes;
 import com.ejercicio.calculadora.service.CalculadoraService;
 import com.ejercicio.calculadora.utils.Operacion;
 import com.ejercicio.calculadora.utils.StringUtils;
+import io.corp.calculator.TracerImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CalculadoraController.class)
 class CalculadoraControllerTest {
 
+    private static final String ACCESO_A = "Acceso a ";
+    private final TracerImpl tracer = new TracerImpl();
+
     @MockBean
     CalculadoraService calculadoraService;
 
@@ -37,9 +42,10 @@ class CalculadoraControllerTest {
         final BigDecimal op1 = new BigDecimal(5);
         final BigDecimal op2 = new BigDecimal(4);
         final BigDecimal resultado = new BigDecimal(9);
-
+        final String requestMapping = Constantes.API_V_1_CALCULADORA + "/suma/" + op1 + "/" + op2;
+        tracer.trace(ACCESO_A + requestMapping);
         given(calculadoraService.suma(op1,op2)).willReturn(resultado);
-        mockMvc.perform(get("/api/v1/calculadora/suma/" + op1 + "/" + op2).accept(MediaType.TEXT_PLAIN))
+        mockMvc.perform(get(requestMapping).accept(MediaType.TEXT_PLAIN))
                 .andExpect(status().isOk())
                 .andExpect(content().string(StringUtils.toString(op1, op2, resultado, Operacion.SUMA)));
     }
@@ -49,9 +55,10 @@ class CalculadoraControllerTest {
         final BigDecimal op1 = new BigDecimal(10);
         final BigDecimal op2 = new BigDecimal(5);
         final BigDecimal resultado = new BigDecimal(5);
-
+        final String requestMapping = Constantes.API_V_1_CALCULADORA + "/resta/" + op1 + "/" + op2;
+        tracer.trace(ACCESO_A + requestMapping);
         given(calculadoraService.resta(op1,op2)).willReturn(resultado);
-        mockMvc.perform(get("/api/v1/calculadora/resta/" + op1 + "/" + op2).accept(MediaType.TEXT_PLAIN))
+        mockMvc.perform(get(requestMapping).accept(MediaType.TEXT_PLAIN))
                 .andExpect(status().isOk())
                 .andExpect(content().string(StringUtils.toString(op1, op2, resultado, Operacion.RESTA)));
     }
