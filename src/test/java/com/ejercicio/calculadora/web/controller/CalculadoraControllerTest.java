@@ -3,7 +3,7 @@ package com.ejercicio.calculadora.web.controller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CalculadoraControllerTest {
 
@@ -12,11 +12,13 @@ class CalculadoraControllerTest {
     }
 
     @Test
-    void whoami() {
-        assertEquals("1", "1");
+    public void suma() {
+        assertTrue(true);
     }
 
     @Test
-    void getBeer() {
+    public void resta() {
+        assertTrue(true);
     }
+
 }
