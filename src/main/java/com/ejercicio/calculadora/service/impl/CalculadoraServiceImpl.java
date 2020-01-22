@@ -34,7 +34,6 @@ public class CalculadoraServiceImpl implements CalculadoraService {
      */
     private ResultadoOperacion realizarOperacion(final BigDecimal op1, final BigDecimal op2, final Operacion operacion) {
         final BigDecimal resultado;
-        final ResultadoOperacion resultadoOperacion = new ResultadoOperacion();
         switch (operacion) {
             case SUMA:
                 resultado = op1.add(op2);
@@ -46,10 +45,8 @@ public class CalculadoraServiceImpl implements CalculadoraService {
                 throw new CalculadoraException("Operacion no soportada");
         }
         tracer.trace(StringUtils.toString(op1, op2, resultado, operacion));
-        resultadoOperacion.setOperando1(op1);
-        resultadoOperacion.setOperando2(op2);
-        resultadoOperacion.setOperacion(operacion.getOper());
-        resultadoOperacion.setResultado(resultado);
-        return resultadoOperacion;
+        return ResultadoOperacion.builder()
+                .operando1(op1).operando2(op2).operacion(operacion.getOper()).resultado(resultado)
+                .build();
     }
 }

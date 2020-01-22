@@ -37,9 +37,7 @@ class CalculadoraControllerTest {
     public void setUp() {
         final BigDecimal op1 = new BigDecimal("10");
         final BigDecimal op2 = new BigDecimal("5");
-        resultadoOperacion = new ResultadoOperacion();
-        resultadoOperacion.setOperando1(op1);
-        resultadoOperacion.setOperando2(op2);
+        resultadoOperacion = ResultadoOperacion.builder().operando1(op1).operando2(op2).build();
     }
 
     @Test
