@@ -16,6 +16,7 @@ mvn install:install-file -Dfile=C:\temporal\tracer\tracer-1.0.0.jar -DgroupId=io
 - Acceso a los microservicios **suma** y **resta** de la calculadora. Los paths de los microservicios son **"/suma/"** y **"/resta/"** respectivamente, y también están definidos en **Constantes**.
 - Cada microservicio ejecuta métodos de un **Service**, que son los que ejecutan la lógica de negocio, en este caso sumas y restas.
 - En cada microservicio se validan las **PathVariables**. En este caso los operandos no pueden tener más de 10 dígitos en la parte entera y 5 en la decimal.
+- Cada microservicio devuelve un **ResponseEntitity**, que contiene un bean que se transformará en un objeto **JSON** en la respuesta. 
 - En cada microservicio se definen etiquetas **swagger** para tener un acceso más amigable a través de una página html.
 
 #### Servicio

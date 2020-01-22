@@ -2,10 +2,11 @@ package com.ejercicio.calculadora.web.controller;
 
 import com.ejercicio.calculadora.constant.Constantes;
 import com.ejercicio.calculadora.service.CalculadoraService;
-import com.ejercicio.calculadora.utils.Operacion;
-import com.ejercicio.calculadora.utils.StringUtils;
+import com.ejercicio.calculadora.web.model.ResultadoOperacion;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,20 +29,20 @@ public class CalculadoraController {
 
     @GetMapping({Constantes.SUMA + "{op1}/{op2}"})
     @ApiOperation("Suma dos números pasados mediante parámetros")
-    public String suma(
+    public ResponseEntity<ResultadoOperacion> suma(
             @ApiParam(value = "Operando 1", required = true) @PathVariable("op1") @Digits(integer = 10,fraction = 5) final BigDecimal op1,
             @ApiParam(value = "Operando 2", required = true) @PathVariable("op2") @Digits(integer = 10,fraction = 5) final BigDecimal op2) {
-        final BigDecimal resultado = calculadoraService.suma(op1, op2);
-        return StringUtils.toString(op1, op2, resultado, Operacion.SUMA);
+        final ResultadoOperacion resultadoOperacion = calculadoraService.suma(op1, op2);
+        return new ResponseEntity<>(resultadoOperacion, HttpStatus.OK);
     }
 
     @GetMapping({Constantes.RESTA + "{op1}/{op2}"})
     @ApiOperation("Resta dos números pasados mediante parámetros")
-    public String resta(
+    public ResponseEntity<ResultadoOperacion> resta(
             @ApiParam(value = "Operando 1", required = true) @PathVariable("op1") @Digits(integer = 10,fraction = 5) final BigDecimal op1,
             @ApiParam(value = "Operando 1", required = true) @PathVariable("op2") @Digits(integer = 10,fraction = 5) final BigDecimal op2) {
-        final BigDecimal resultado = calculadoraService.resta(op1, op2);
-        return StringUtils.toString(op1, op2, resultado, Operacion.RESTA);
+        final ResultadoOperacion resultadoOperacion = calculadoraService.resta(op1, op2);
+        return new ResponseEntity<>(resultadoOperacion, HttpStatus.OK);
     }
 
 }

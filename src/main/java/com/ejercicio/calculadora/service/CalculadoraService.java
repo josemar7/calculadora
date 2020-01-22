@@ -1,5 +1,7 @@
 package com.ejercicio.calculadora.service;
 
+import com.ejercicio.calculadora.web.model.ResultadoOperacion;
+
 import java.math.BigDecimal;
 
 public interface CalculadoraService {
@@ -8,15 +10,15 @@ public interface CalculadoraService {
      * operacion suma
      * @param op1, operando 1
      * @param op2, operando 2
-     * @return BigDecimal
+     * @return ResultadoOperacion
      */
-    BigDecimal suma(final BigDecimal op1, final BigDecimal op2);
+    ResultadoOperacion suma(final BigDecimal op1, final BigDecimal op2);
 
     /**
      * operacion resta
      * @param op1, operando1
      * @param op2, operando2
-     * @return BigDecimal
+     * @return ResultadoOperacion
      */
-    BigDecimal resta(BigDecimal op1, BigDecimal op2);
+    ResultadoOperacion resta(BigDecimal op1, BigDecimal op2);
 }
